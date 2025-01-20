@@ -1,16 +1,7 @@
-[flake8]
 
+[flake8]
 exclude =
-    .git,
-    .gitignore,
-    *.pot,
-    *.py[co],
-    __pycache__,
-    venv,
-    .env,
-    settings.py,
-    apps.py,
-    */__init__.py,
-    */tests.py,
-ignore =
-    E501,
+  migrations,
+  __pycache__,
+  manage.py,
+  settings.py
