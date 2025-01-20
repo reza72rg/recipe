@@ -1,5 +1,3 @@
-version: "3.8"  # Make sure the version is supported
-
 services:
   app:
     build:
