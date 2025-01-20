@@ -11,6 +11,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 # Copy and install dependencies
 COPY ./requirements.txt /tmp/requirements.txt
+
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     apk add --no-cache gcc musl-dev libffi-dev openssl-dev && \
