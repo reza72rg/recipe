@@ -1,3 +1,4 @@
+---
 name: Checks
 on: [push]
 jobs:
@@ -13,15 +14,6 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v2  # Correct action version
-
-      - name: Install Docker and Docker Compose
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker.io
-          sudo apt-get install -y docker-compose
-
-      - name: Build Docker images
-        run: docker-compose build
 
       - name: Test
         run: docker-compose run --rm app sh -c "python manage.py test"
