@@ -11,13 +11,23 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 # Copy and install dependencies
 COPY ./requirements.txt /tmp/requirements.txt
+COPY ./requirements.dev.txt /tmp/requirements.dev.txt
+ARG DEV=false
 
-RUN python -m venv /py && \
+RUN apk add --no-cache \
+        gcc \
+        musl-dev \
+        libffi-dev \
+        openssl-dev && \
+    python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
-    apk add --no-cache gcc musl-dev libffi-dev openssl-dev && \
     /py/bin/pip install -r /tmp/requirements.txt && \
+    if [ "$DEV" = "true" ]; then \
+        /py/bin/pip install -r /tmp/requirements.dev.txt; \
+    fi && \
     apk del gcc musl-dev libffi-dev openssl-dev && \
     rm -rf /tmp
+
 
 # Add a non-root user
 RUN adduser \
