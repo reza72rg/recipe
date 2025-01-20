@@ -1,15 +1,13 @@
+version: "3.8"  # Make sure the version is supported
 
 services:
   app:
     build:
       context: .
-      args:
-        - DEV=true
+      dockerfile: Dockerfile  # Ensure this is the correct path to your Dockerfile
     ports:
-      - "8000:8000"
+      - "8000:8000"  # Maps host port 8000 to container port 8000
     volumes:
-      - ./app:/app
-    user: root
+      - ./app:/app  # Maps local app directory to container directory
     command: >
       sh -c "python manage.py runserver 0.0.0.0:8000"
-    
