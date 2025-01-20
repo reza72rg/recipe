@@ -13,17 +13,17 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Checkout repository
-        uses: actions/checkout@v2  # Checkout the code
+        uses: actions/checkout@v2 
       - name: Install Docker and Docker Compose
         run: |
             sudo apt-get update
             sudo apt-get install -y docker-compose  # Install Docker Compose
       - name: Setup Docker-Compose
         run: |
-            docker-compose up -d  # Start the services in detached mode
+            docker-compose up 
         
       - name: Test
-        run: docker-compose run --rm app sh -c "python manage.py test"  # Run tests
+        run: docker-compose run --rm app sh -c "python manage.py test"
         
       - name: Lint
-        run: docker-compose run --rm app sh -c "flake8"  # Lint the code
+        run: docker-compose run --rm app sh -c "flake8"
